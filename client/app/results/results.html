@@ -1,21 +1,92 @@
 <navbar></navbar>
 
-<div flex layout="row">
+<div  ng-controller="ResultsController as vm">
+  <!--flex layout="row"-->
+  <!--&lt;!&ndash; Container #3 &ndash;&gt;-->
+  <!--<md-sidenav md-is-locked-open="true" id="results-sidebar-left">-->
+    <!--&lt;!&ndash;class="md-whiteframe-z2"&ndash;&gt;-->
 
-    <!-- Container #3 -->
-    <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2" id="results-sidebar-left">
-      <input type="text" placeholder="Search">
-      <div>
-      <img ng-click="" src="">
-      <title></title>
-      </div>
-    </md-sidenav>
+    <!--<md-input-container>-->
+      <!--<label>Auto Complete Type</label>-->
+      <!--<md-select placeholder="Assign to user" ng-model="vm.types">-->
+        <!--<md-option value="['geocode']">Geodode</md-option>-->
+        <!--<md-option value="['establishment']">Establishment</md-option>-->
+        <!--<md-option value="['address']" ng-selected="true">Address</md-option>-->
+      <!--</md-select>-->
+    <!--</md-input-container>-->
 
-    <!-- Container #4 -->
-    <md-content flex="75" id="content">
-    <img id="map" src="../../assets/gmap-grey-standin.png">
-    </md-content>
+    <!--<p>{{vm.types}}</p>-->
+
+    <!--<md-input-container>-->
+        <!--<input places-auto-complete size=80-->
+           <!--ng-model="vm.address"-->
+           <!--component-restrictions="{country:'us'}"-->
+           <!--types="{{types}}"-->
+           <!--on-place-changed="vm.placeChanged()" />-->
+    <!--</md-input-container>-->
+
+    <!--<div ng-show="vm.place">-->
+      <!--Address = {{vm.place.formatted_address}} <br/>-->
+      <!--Location: {{vm.place.geometry.location}}<br/>-->
+    <!--</div>-->
+
+    <!--address : {{vm.address}}-->
+  <!--</md-sidenav>-->
+
+  <!--&lt;!&ndash; Container #4 &ndash;&gt;-->
+  <!--<md-content flex="75" id="content">-->
+    <!--<ng-map></ng-map>-->
+  <!--</md-content>-->
+
+
+  Enter an address: <br/>
+  <input places-auto-complete size=80
+         ng-model="vm.address"
+         component-restrictions="{country:'us'}"
+         on-place-changed="vm.placeChanged()" /> <br/>
+
+  <div ng-show="vm.place">
+    Address = {{vm.place.formatted_address}} <br/>
+    Location: {{vm.place.geometry.location}}<br/>
+  </div>
+
+  address : {{vm.address}}
+
+  <ng-map
+    styles="{{vm.mapStyle}}"
+    scrollwheel="true"
+    zoom-to-include-markers="true">
+    <marker ng-repeat="p in vm.positions"
+            position="{{p.pos}}" title="pos: {{p.pos}}">
+
+    </marker>
+  </ng-map>
+
+  <br><br>
+
+  <!--<ng-map-->
+    <!--default-style="true"-->
+    <!--center="current-location"-->
+    <!--zoom="14"-->
+    <!--styles="{{vm.mapStyle}}">-->
+
+    <!--<info-window-->
+      <!--id="foo"-->
+      <!--position="current-location">-->
+
+      <!--<div ng-non-bindable="">-->
+        <!--<div>-->
+          <!--Hi, I am here.<br/>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</info-window>-->
+  <!--</ng-map>-->
+
+   <!--MORE IDEAS HERE--> 
+  <!--http://ngmap.github.io/#/street-view-panorama_container.html--> 
+  <!--http://ngmap.github.io/#/ui-router.html-->
+   <!--http://ngmap.github.io/#/infowindow_ng_click.html--> 
+  <!--http://ngmap.github.io/#/infowindow_compile.html-->
+
 
 </div>
-
-</body>

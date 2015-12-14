@@ -10,7 +10,8 @@ angular.module('ScoutIOApp', [
   'btford.socket-io',
   'ui.router',
   'validation.match',
-  'ngMaterial'
+  'ngMaterial',
+  'ngMap'
 ])
   .config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
