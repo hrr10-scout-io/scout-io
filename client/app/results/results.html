@@ -15,33 +15,26 @@
           on-place-changed="vm.placeChanged()"/>
       </md-input-container>
 
-
-
       <!-- ADVANCED SEARCH -->
-      <div layout="row">
+      <div layout="row" layout-align="start">
         <md-checkbox ng-model="setting.indoor">
           Indoor
         </md-checkbox>
         <md-checkbox ng-model="setting.outdoor">
           Outdoor
         </md-checkbox>
-      </div>
-
-      <div layout="row">
-        <div class="location" flex>
-          <md-input-container md-no-float class="md-block">
-            <label>Radius</label>
-            <md-select ng-model="radius">
-              <md-option>1</md-option>
-              <md-option>2</md-option>
-              <md-option>3</md-option>
-              <md-option>5</md-option>
-              <md-option>10</md-option>
-              <md-option>15</md-option>
-              <md-option>20</md-option>
-            </md-select>
-          </md-input-container>
-        </div>
+        <md-input-container md-no-float class="md-block">
+          <label>Radius</label>
+          <md-select ng-model="radius">
+            <md-option>1</md-option>
+            <md-option>2</md-option>
+            <md-option>3</md-option>
+            <md-option>5</md-option>
+            <md-option>10</md-option>
+            <md-option>15</md-option>
+            <md-option>20</md-option>
+          </md-select>
+        </md-input-container>
       </div>
 
       <!-- DATE RANGE to search for season-->
@@ -57,13 +50,11 @@
       </div>
     </div>
 
-
-
     <!--RESULTS-->
-    <div layout="column" layout-align="center">
+    <div ng-controller="PhotoCtrl" layout="column" layout-align="center">
       <div class="thumbnail" flex>
         <p>Title of Photo Thumbnail</p>
-        <i class="fa fa-picture-o fa-5x"></i>
+        <i class="fa fa-picture-o fa-5x" ng-click="showCustom($event)" ui-sref="dialog"></i>
 
         <p class="thumbnail-description">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu.
           Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu

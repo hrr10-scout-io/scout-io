@@ -2,7 +2,6 @@
 angular.module('ScoutIOApp') //, ['ngMap'], ['uiGmapgoogle-maps']
   .controller('ResultsController', ResultsController);
 
-
 function ResultsController($state, $http, NgMap, Search) {
 
   var results = this;
@@ -459,4 +458,4 @@ results.photos2 = [
     URL: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=a8faad8e29a6cfb369a1133d2020ffaf&tags=%27eastern+sierra%27%2C+snow&tag_mode=all&has_geo=1&extras=geo%2Ctags%2C+date_taken%2Cpath_alias%2C+url_sq%2C+url_q&per_page=&format=json&nojsoncallback=1&api_sig=55a4f7f41a3b405d30120bec519036e6"
   }
 
-}
+};
