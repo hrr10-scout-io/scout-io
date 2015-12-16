@@ -2,6 +2,10 @@
 	background-color: rgb(0, 0, 0);
 }
 
+#toolbar .md-button.md-icon-button {
+  border-radius: 0px;
+}
+
 .md-button {
 	color: rgba(89, 89, 89, 1);
 	background-color: rgba(40, 20, 122, 1);
@@ -9,6 +13,7 @@
 
 .md-icon-button {
 	background-color: transparent;
+  margin-bottom: -10px;
 }
 
 .navbar-brand {
@@ -21,6 +26,10 @@
 .navbar-text {
 	font-size: 16px;
 	margin-left: 0px;
+  width: 500px;
+  text-align: right;
+  margin-bottom: 8px;
+  margin-right: 8px;
 }
 
 .fa-camera-retro {
@@ -30,3 +39,7 @@
 	padding: 2px;
 	border: transparent;
 }
+
+/*#toolbar .md-button:hover {*/
+  /*top: -10px*/
+/*}*/

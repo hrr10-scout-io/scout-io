@@ -10,7 +10,7 @@ function MainController($http, $scope, $state, socket, Search){
   this.$http = $http;
   this.$state = $state;
 
-/*Triggers SearchFactory method sets response to ... redirects to results 
+/*Triggers SearchFactory method sets response to ... redirects to results
 @param {string} query [comma deliniated word string]*/
   this.getByTagOnly = function(query){
     console.log(query);
@@ -22,7 +22,7 @@ function MainController($http, $scope, $state, socket, Search){
       // results.photos = results
     })
   }
-};
+}
 
 
 // below here was the existing MainController from the generator

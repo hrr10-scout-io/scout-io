@@ -4,15 +4,15 @@
     <form ng-submit="results.getByTagOnly(tagQuery)">
       <md-input-container class="splash-search" layout="column" layout-align="center center">
         <label style="color:#FFA000;">Start Searching Here</label>
-        <input type="text" ng-model="tagQuery" placeholder="sierras, aspen" id="splash-search-text">
+        <input type="text" ng-model="tagQuery" placeholder="aspen sierras" onblur="if (this.value=='') { this.placeholder='aspen sierras' }" onfocus="this.placeholder=''" id="splash-search-text" autocomplete="off">
       </md-input-container>
-    <form>
+    </form>
   </div>
 </div>
 
 <section>
   <span class="title">What is Scout.IO?</span>
-  <md-content>Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu. Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus. Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.
+  <md-content class="splash-content-text">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu. Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus. Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.
 
   Dico sapientem at duo, per populo tibique voluptaria ad. Graecis philosophia mea ex. Ex pri clita noster scripta. Nostrum vulputate argumentum no pri, tollit regione vis cu. Quo te primis vivendum, duo persius prompta tincidunt cu.
 
@@ -28,7 +28,7 @@
 
 <section>
   <span class="title">Where will your next shoot be?</span>
-  <md-content>Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu. Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus. Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.
+  <md-content class="splash-content-text">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu. Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus. Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.
 
   Dico sapientem at duo, per populo tibique voluptaria ad. Graecis philosophia mea ex. Ex pri clita noster scripta. Nostrum vulputate argumentum no pri, tollit regione vis cu. Quo te primis vivendum, duo persius prompta tincidunt cu.
 
@@ -44,7 +44,7 @@
 
 <section>
   <span class="title">Customizeable Searches</span>
-  <md-content>Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu. Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus. Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.
+  <md-content class="splash-content-text">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu. Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus. Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.
 
   Dico sapientem at duo, per populo tibique voluptaria ad. Graecis philosophia mea ex. Ex pri clita noster scripta. Nostrum vulputate argumentum no pri, tollit regione vis cu. Quo te primis vivendum, duo persius prompta tincidunt cu.
 
@@ -60,7 +60,7 @@
 
 <section>
   <span class="title">Project Management & Collaboration</span>
-  <md-content>Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu. Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus. Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.
+  <md-content class="splash-content-text">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu. Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus. Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.
 
   Dico sapientem at duo, per populo tibique voluptaria ad. Graecis philosophia mea ex. Ex pri clita noster scripta. Nostrum vulputate argumentum no pri, tollit regione vis cu. Quo te primis vivendum, duo persius prompta tincidunt cu.
 
@@ -71,4 +71,4 @@
   An quis elit alienum pro. Has lucilius quaestio dissentiunt ex, pro ad tamquam antiopam vulputate. Vel eu dicta tractatos disputationi, id case habeo democritum mei, inermis lobortis partiendo his id. Est brute omnesque cu, nihil regione abhorreant id mel, nec ne utroque offendit vivendum. Nisl incorrupte delicatissimi ad vel, mei at volutpat maiestatis. Duo esse appareat id, duo melius recusabo ne.</md-content>
 </section>
 
-<footer></footer>
+<!--<footer></footer>-->

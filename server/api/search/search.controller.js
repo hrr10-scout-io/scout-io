@@ -34,14 +34,14 @@ var flickrEnd = "&tag_mode=all&has_geo=1&extras=geo%2Ctags%2C+date_taken%2Cpath_
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
-  return function(err) {
+  return function (err) {
     res.status(statusCode).send(err);
   };
 }
 
 function responseWithResult(res, statusCode) {
   statusCode = statusCode || 200;
-  return function(entity) {
+  return function (entity) {
     if (entity) {
       res.status(statusCode).json(entity);
     }
@@ -49,7 +49,7 @@ function responseWithResult(res, statusCode) {
 }
 
 function handleEntityNotFound(res) {
-  return function(entity) {
+  return function (entity) {
     if (!entity) {
       res.status(404).end();
       return null;
@@ -59,33 +59,32 @@ function handleEntityNotFound(res) {
 }
 
 // Gets photos by tagSearch only
-exports.tags = function(req, res) {
-
-  console.log(req.params.query);  
+exports.tags = function (req, res) {
   var query = flickrURL + "&tags=" + req.params.query + flickrEnd;
   var options = {
     url: query
   };
 
-  request(options, function(err, response, data) {
+  request(options, function (err, response, data) {
     if (err) {
       console.log(err);
     }
-    // console.log(response.body, "flikr results", data)
+
+    console.log("data", data);
+
     res.send(data);
   });
 };
 
 // Gets photos within a radius without filtering by tag
-exports.geo = function(req, res) {
+exports.geo = function (req, res) {
   var query = flickrURL;
 
 };
 
 // Gets photos that match all passed params / all params optional
-exports.searchCriteria = function(req, res) {
+exports.searchCriteria = function (req, res) {
   console.log('here in searchCriteria');
-
 
 
 };
