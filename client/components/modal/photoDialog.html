@@ -18,39 +18,35 @@
 
       <p id="date-taken">Date Taken: {{dialog.photo.datetaken}}</p>
 
-        <!-- COMMENTS BOX -->
-        <md-whiteframe class="md-whiteframe-4dp" id="comments-container" layout layout-align="center center">
-          <span ng-hide="isSavedPhoto()"><ng-md-icon icon="comment" size="56"></ng-md-icon> Save this amazing photo to add comments!</span>
+      <!-- COMMENTS BOX -->
+      <md-whiteframe class="md-whiteframe-4dp" id="comments-container" layout layout-align="center center">
+        <span ng-hide="isSavedPhoto()"><ng-md-icon icon="comment" size="56"></ng-md-icon> Save this amazing photo to add comments!</span>
 
+        <md-content class="photo-comments-private" ng-show="isSavedPhoto()">
+          <div ng-repeat="comment in dialog.photo.comments">
+            <p>{{comment.text}}{{comment.created_at}}{{comment.author}}</p>
+            <md-button class="md-icon-button" aria-label="Edit" ng-show="isAuthor()" ng-click="comment.edit()">
+              <!-- IF YOU CLICK ICON EDIT/DELETE FORM SHOWS IN COMMENT BOX -->
+              <ng-md-icon icon="create"></ng-md-icon>
+              <md-tooltip md-direction="bottom">Edit Comment</md-tooltip>
+            </md-button>
+          </div>
 
-          <md-content class="photo-comments-private" ng-show="isSavedPhoto()">
-            <div ng-repeat="comment in dialog.photo.comments">
-              <p>{{comment.text}}{{comment.created_at}}{{comment.author}}</p>
-              <md-button class="md-icon-button" aria-label="Edit" ng-show="isAuthor()" ng-click="comment.edit()">
-                <!-- IF YOU CLICK ICON EDIT/DELETE FORM SHOWS IN COMMENT BOX -->
-                <ng-md-icon icon="create"></ng-md-icon>
-                <md-tooltip md-direction="bottom">Edit Comment</md-tooltip>
-              </md-button>
-            </div>
+          <md-input-container>
+            <!--  <md-input-container  md-no-float class="md-block" -->
+            <!--   <md-icon>
+               <ng-md-icon icon="add_box"></ng-md-icon>
+              </md-icon> -->
+            <md-input ng-model="photo.newComment" type="text" placeholder="chase scene possibility"
+                      ng-sumbit="addComment(photo.newComment)">
+              <!--          <md-button class="md-icon-button" aria-label="Submit" ng-click="addComment(photo.newComment)">
+                          <md-tooltip md-direction="top">Submit Comment</md-tooltip>
+                        </md-button> -->
+          </md-input-container>
+        </md-content>
 
-            <md-input-container>
-              <!--  <md-input-container  md-no-float class="md-block" -->
-              <!--   <md-icon>
-                 <ng-md-icon icon="add_box"></ng-md-icon>
-                </md-icon> -->
-              <md-input ng-model="photo.newComment" type="text" placeholder="chase scene possibility"
-                        ng-sumbit="addComment(photo.newComment)">
-                <!--          <md-button class="md-icon-button" aria-label="Submit" ng-click="addComment(photo.newComment)">
-                            <md-tooltip md-direction="top">Submit Comment</md-tooltip>
-                          </md-button> -->
-            </md-input-container>
-          </md-content>
-
-        </md-whiteframe>
-      </div>
-
-    <!--just trying to pump out changes to origin here to see if its working-->
-    <!--origin = {{dialog.origin}}-->
+      </md-whiteframe>
+    </div>
 
     <div id="div-info" layout-align="center start" flex="40">
       <div id="smallmapdiv">
@@ -67,8 +63,9 @@
           <directions
             draggable="true"
             panel="directions-panel"
+            map-type-id='TERRAIN'
             travel-mode="DRIVING"
-            origin="{{dialog.origin}}"
+            origin="{{$root.origin}}"
             destination="{{dialog.photo.latitude}}, {{dialog.photo.longitude}}">
           </directions>
         </ng-map>
@@ -82,7 +79,7 @@
         <label>Direction From</label>
         <input id="photo-dialog-places-textbox"
                places-auto-complete
-               ng-model="dialog.placeName"
+               ng-model="$root.directions.place"
                on-place-changed="dialog.placeChanged()"/>
       </md-input-container>
 

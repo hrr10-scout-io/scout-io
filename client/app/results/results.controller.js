@@ -5,7 +5,6 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   var results = this;
   var bounds;
 
-
   results.place;
   results.search = {};
   results.search.placeName;
@@ -26,29 +25,26 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
   results.$http = $http;
   results.$state = $state;
-  // results.photos = Search.tagResults();
   $rootScope.photos = [];
 
   results.getByTagOnly = function (query) {
     results.$state.go('results');
+    results.search.keywords = query;  //TODO: not setting form element text for some reason
 
     Search.getByTagOnly(query)
       .then(function (response) {
           $rootScope.photos = response.data.photos.photo;
-          results.search.keywords = query;  //TODO: not setting form element text for some reason
+
           setMarkers();
       })
   };
 
-  results.advancedSearch = function (form) {
-
+  results.advancedSearch = function () {
     if (results.place) {
       results.search.geoCoordinates = results.place.geometry;
       results.search.lat = results.search.geoCoordinates.location.lat();
       results.search.lon = results.search.geoCoordinates.location.lng();
-    }
-
-    if (!results.search.placeName) {
+    } else {
       results.search.geoCoordinates = null;
     }
 
@@ -58,10 +54,13 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
     Search.getAdvanced(results.search)
      .then(function (response) {
-      $rootScope.photos = response.data.photos.photo;
-      setMarkers();
+       if (response.data.photos) {
+         $rootScope.photos = response.data.photos.photo;
+       } else {
+         response.data.photos.photo = [];
+       }
+        setMarkers();
      })
-
   };
 
   var setMarkers = function () {
@@ -76,28 +75,22 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
       results.map.markers = [];
       bounds = new google.maps.LatLngBounds();
-      //bounds.
-
-      console.log("bounds", bounds);
 
       for (var i = 0; i < $rootScope.photos.length; i++) {
         var myLatlng = new google.maps.LatLng($rootScope.photos[i].latitude, $rootScope.photos[i].longitude);
         var marker = new google.maps.Marker({position: myLatlng});
 
-        //console.log(myLatlng.lat() + "  ," + myLatlng.lng() );
-
         marker.addListener('click', results.toggleBounce);
         marker.setMap(results.map);
         results.map.markers.push(marker);
-        bounds.extend(myLatlng);
+
+        if ($rootScope.photos[i].latitude > -68) {
+          bounds.extend(myLatlng);
+        }
       }
 
-      //results.map.fitBounds(bounds);
       results.map.setCenter(bounds.getCenter());
-      //google.maps.event.trigger(map, 'resize');
-
       results.map.fitBounds(bounds);
-      console.log("bounds", bounds);
     });
   };
 
@@ -108,6 +101,8 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
     setTimeout(function () {
       marker.setAnimation(null);
     }, 2100);
+
+    $('#photos').animate({scrollTop:$('#photos')}, 'fast');
   };
 
   results.showPhotoPin = function (evt, photoId) {
@@ -117,50 +112,19 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
   results.placeChanged = function () {
     results.place = this.getPlace();
+
+    if (results.place && !results.search.radius) {
+      results.search.radius = 15;
+    }
   };
 
   results.toggleAdvancedSearchDiv = function (divStatus) {
-    results.advancedSearchOpen = results.advancedSearchOpen ? false : true;
+    results.advancedSearchOpen = !results.advancedSearchOpen;
+
     if(!divStatus) {
       results.showHide = 'Hide Advanced Search';
     } else {
       results.showHide = 'Show Advanced Search';
     }
   };
-
 }
-
-
-// photo.tag is a space separated string of tags so need to use .split(" ") to get a comma seperated array
-// the host url is not on this object but can be created by following this convention https://www.flickr.com/photos/{photo.pathalias}/{photo.id}/
-// results.samplePhoto = {
-// accuracy: "16"
-// context: 0
-// datetaken: "2014-07-27 16:29:48"
-// datetakengranularity: "0"
-// datetakenunknown: "0"
-// farm: 1
-// geo_is_contact: 0
-// geo_is_family: 0
-// geo_is_friend: 0
-// geo_is_public: 1
-// height_m: "414"
-// height_s: "199"
-// id: "22416075689"
-// isfamily: 0
-// isfriend: 0
-// ispublic: 1
-// latitude: "44.077861"
-// longitude: "-116.935203"
-// owner: "8599745@N08"
-// pathalias: "kevystew"
-// place_id: "WZREzB1TVry9hify"
-// secret: "bcac6035d5"
-// server: "751"
-// tags: "cityhall idaho courthouse courthouses us95 countycourthouse nationalregister nationalregisterofhistoricplaces payette usccidpayette payettecounty"
-// title: "City Hall and Courthouse- Payette ID (1)"
-// url_m: "https://farm1.staticflickr.com/751/22416075689_bcac6035d5.jpg"
-// url_s: "https://farm1.staticflickr.com/751/22416075689_bcac6035d5_m.jpg"
-// width_m: "500"
-// width_s: "240"
-// woeid: "2469449"

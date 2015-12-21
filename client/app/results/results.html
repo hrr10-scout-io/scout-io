@@ -5,70 +5,79 @@
   <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2" id="results-sidebar-left" flex>
 
     <div class="search-components">
-      <form ng-cloak ng-submit="results.advancedSearch(results.search)">
-        <md-input-container md-no-float class="md-block">
-          <label>Keywords</label>
-          <input ng-model="results.search.keywords"/>
-        </md-input-container>
-
-        <!-- ADVANCED SEARCH -->
-        <md-button id="advanced-search" type="button" class="md-raised" ng-click="results.toggleAdvancedSearchDiv(results.advancedSearchOpen)" ng-init="results.showHide = 'Show Advanced Search'">{{results.showHide}}</md-button>
-
-        <div id="advanced-search" ng-show="results.advancedSearchOpen">
-
-          <div layout="row">
-            <md-checkbox ng-model="results.search.setting.indoor">
-              Indoor
-            </md-checkbox>
-            <md-checkbox ng-model="results.search.setting.outdoor">
-              Outdoor
-            </md-checkbox>
-          </div>
-
-          <md-input-container md-no-float class="md-block">
-            <label>Search Location</label>
-            <input id="places-textbox"
-                   places-auto-complete
-                   ng-model="results.search.placeName"
-                   on-place-changed="results.placeChanged()"/>
+      <md-card>
+        <form ng-cloak ng-submit="results.advancedSearch(results.search)">
+          <md-input-container md-no-float class="md-block md-accent">
+            <label>Keywords</label>
+            <input ng-model="results.search.keywords"/>
           </md-input-container>
 
-          <div layout="row">
-            <div class="location" flex>
-            <label id="radius-label">Radius</label>
-              <br><br>
-              <md-input-container md-no-float>
-                <md-slider flex md-discrete ng-model="results.search.radius" step="1" min="0" max="20" aria-label="radius">
-                </md-slider>
-              </md-input-container>
+          <!-- ADVANCED SEARCH -->
+          <div layout="row" layout-align="center center">
+            <a id="show-advanced-button"
+               ng-click="results.toggleAdvancedSearchDiv(results.advancedSearchOpen)"
+               ng-init="results.showHide='Show Advanced Search'">{{results.showHide}}
+            </a>
+          </div>
+
+          <div id="advanced-search" ng-show="results.advancedSearchOpen">
+
+            <div layout="row">
+              <md-checkbox ng-model="results.search.setting.indoor">
+                Indoor
+              </md-checkbox>
+              <md-checkbox ng-model="results.search.setting.outdoor">
+                Outdoor
+              </md-checkbox>
+            </div>
+
+            <md-input-container md-no-float class="md-block md-accent">
+              <label>Search Location</label>
+              <input id="places-textbox"
+                     places-auto-complete
+                     ng-model="results.search.placeName"
+                     on-place-changed="results.placeChanged()"/>
+            </md-input-container>
+
+            <div layout="row">
+              <div class="location" flex>
+                <label id="radius-label">Radius</label>
+                <br><br>
+                <md-input-container md-no-float>
+                  <md-slider flex md-discrete ng-model="results.search.radius" step="1" min="0" max="20"
+                             aria-label="radius">
+                  </md-slider>
+                </md-input-container>
+              </div>
+            </div>
+
+            <!-- DATE RANGE to search for season-->
+            <div layout="row">
+              <div class="datepicker md-accent" flex>
+                <label>Start Date</label>
+                <md-datepicker class="datepickerBtn md-accent" ng-model="results.search.startDate"></md-datepicker>
+              </div>
+              <div class="datepicker md-accent" flex>
+                <label>End Date</label>
+                <md-datepicker class="datepickerBtn md-accent" ng-model="results.search.endDate"></md-datepicker>
+              </div>
             </div>
           </div>
 
-        <!-- DATE RANGE to search for season-->
-          <div layout="row">
-            <div class="datepicker" flex>
-              <label>Start Date</label>
-              <md-datepicker class="datepickerBtn" ng-model="results.search.startDate"></md-datepicker>
-            </div>
-            <div class="datepicker" flex>
-              <label>End Date</label>
-              <md-datepicker class="datepickerBtn" ng-model="results.search.endDate"></md-datepicker>
-            </div>
+          <div layout="row" layout-align="center center">
+            <md-button class="md-raised md-accent">Search</md-button>
           </div>
-        </div>
-
-        <div layout="row">
-          <md-button class="md-raised">Search</md-button>
-        </div>
-      </form>
+        </form>
+      </md-card>
     </div>
-
 
     <!-- RESULTS -->
     <div id="photos" layout="column" layout-align="center" ng-controller="PhotoDialogCtrl" ng-cloak>
       <div class="thumbnail" ng-repeat="photo in $root.photos" photo="photo" flex>
-        <p>{{photo.title}}</p>
-        <img class="results-photo" src={{photo.url_s}} ng-click="showDialog($event, photo)">
+        <md-card ng-click="showDialog($event, photo)">
+          <p class="thumbnail-description">{{photo.title}}</p>
+          <img class="results-photo" src={{photo.url_s}}>
+        </md-card>
       </div>
     </div>
 
@@ -79,14 +88,10 @@
       id="resultsmap"
       style="display:block;height:calc(100vh - 64px)"
       styles="{{results.mapStyle}}"
+      zoom="10"
       center="current-location"
-      geo-fallback-center="37.09024, -95.71289100000001"
-    >
+      geo-fallback-center="37.09024, -95.71289100000001">
     </ng-map>
-
-    <!--zoom-to-include-markers="true"-->
-
-
   </md-content>
 
 </div>
