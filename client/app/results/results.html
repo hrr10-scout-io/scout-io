@@ -5,7 +5,6 @@
   <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2" id="results-sidebar-left" flex>
 
     <div class="search-components">
-
       <md-card>
         <form ng-cloak ng-submit="results.advancedSearch(results.search)">
           <md-input-container md-no-float class="md-block md-accent">
@@ -22,20 +21,6 @@
           </div>
 
           <div id="advanced-search" ng-show="results.advancedSearchOpen">
-
-            <label>Search for Any or All Keywords:</label>
-
-            <div layout="row" layout-align="center">
-              <h5>all
-                <md-tooltip md-direction="bottom">Photos must contain all keywords</md-tooltip>
-              </h5>
-              <md-switch ng-model="results.search.tag" aria-label="tag switch" ng-true-value="'any keywords'"
-                         ng-false-value="'all keywords'" class="md-warn">
-              </md-switch>
-              <h5>any
-                <md-tooltip md-direction="bottom">Photos must contain at least one matching keyword</md-tooltip>
-              </h5>
-            </div>
 
             <div layout="row">
               <md-checkbox ng-model="results.search.setting.indoor">
@@ -85,7 +70,6 @@
         </form>
       </md-card>
     </div>
-
 
     <!-- RESULTS -->
     <div id="photos" layout="column" layout-align="center" ng-controller="PhotoDialogCtrl" ng-cloak>
