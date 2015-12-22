@@ -3,7 +3,7 @@
   <div class="splash-input" layout="column" layout-align="center center">
     <div class="searchBG">
        <h1 id="cta" style="color:white;"> Lets Find Your Perfect Shoot Location</h1>
-    <form ng-submit="results.getByTagOnly(tagQuery)">
+    <form ng-submit="results.getByTagOnly(results.search.keywords)">
       <md-input-container class="splash-search" layout="column" layout-align="center center">
         <label class="splash-search-label">Start Searching Here</label>
         <input type="text" ng-model="results.search.keywords" placeholder="aspen sierras" onblur="if (this.value=='') { this.placeholder='aspen sierras' }" onfocus="this.placeholder=''" id="splash-search-text" autocomplete="off">
