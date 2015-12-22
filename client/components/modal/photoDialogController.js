@@ -67,7 +67,7 @@ angular.module('ScoutIOApp')
           document.getElementById('photo-dialog-places-textbox').value = '';
           $rootScope.directions.place = '';
           $scope.origin = '';
-          $scopegrun.distance = '';
+          $scope.distance = '';
           $scope.duration = '';
 
           NgMap.getMap({id: 'photomap'}).then(function (map) {
