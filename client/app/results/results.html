@@ -9,7 +9,7 @@
         <form ng-cloak ng-submit="results.advancedSearch(results.search)">
           <md-input-container md-no-float class="md-block md-accent">
             <label>Keywords</label>
-            <input ng-model="results.search.keywords"/>
+            <input ng-model="results.search.keywords" autocomplete="off"/>
           </md-input-container>
 
           <!-- ADVANCED SEARCH -->
@@ -65,7 +65,7 @@
           </div>
 
           <div layout="row" layout-align="center center">
-            <md-button class="md-raised md-accent">Search</md-button>
+            <md-button class="md-primary md-raised">Search</md-button>
           </div>
         </form>
       </md-card>
