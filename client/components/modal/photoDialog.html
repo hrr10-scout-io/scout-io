@@ -3,7 +3,7 @@
   <md-toolbar>
 
     <div class="md-toolbar-tools">
-      <span flex><h2>{{dialog.photo.title}}</h2></span>
+      <span flex><h2 id="photo-dialog-title">{{dialog.photo.title}}</h2></span>
       <md-button class="md-icon-button" aria-label="Close" ng-click="cancel()">
         <i class="fa fa-times fa-2x"></i>
       </md-button>
@@ -52,16 +52,18 @@
       <div id="smallmapdiv">
         <ng-map
           id="photomap"
+          styles="{{dialog.mapStyle}}"
           style="height:350px;"
-          zoom="10"
+          zoom="15"
           center="{{dialog.photo.latitude}}, {{dialog.photo.longitude}}">
 
           <marker
             position="{{dialog.photo.latitude}}, {{dialog.photo.longitude}}">
           </marker>
 
+          <!-- change draggable for draggable directions results, then deal with updating duration, elevation, and distance -->
           <directions
-            draggable="true"
+            draggable="false"
             panel="directions-panel"
             map-type-id='TERRAIN'
             travel-mode="DRIVING"
@@ -71,15 +73,18 @@
         </ng-map>
       </div>
 
-      <div ng-if="directions">
-        For Elevation
+      <div id="pathDiv" ng-if="$root.duration"></div>
+      <div id="durationDiv" ng-if="$root.duration">
+        Duration: {{$root.duration}}
+      </div>
+      <div id="distanceDiv" ng-if="$root.distance">
+        Distance: {{$root.distance}}
       </div>
 
       <md-input-container>
         <label>Direction From</label>
         <input id="photo-dialog-places-textbox"
                places-auto-complete
-               ng-model="$root.directions.place"
                on-place-changed="dialog.placeChanged()"/>
       </md-input-container>
 
@@ -91,4 +96,3 @@
   </md-dialog-content>
 
 </md-dialog>
-

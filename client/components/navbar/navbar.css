@@ -1,5 +1,6 @@
 #toolbar .md-button.md-icon-button {
   border-radius: 0px;
+  margin-bottom: -8px;
 }
 
 .md-button {
@@ -20,17 +21,16 @@
 }
 
 .navbar-text {
-	font-size: 24px;
+	font-size: 28px;
 	margin-left: 0px;
   width: 500px;
   text-align: right;
-  margin-bottom: 8px;
   margin-right: 50px;
 }
 
 .fa-camera-retro {
 	margin-left: 22px;
-	color: rgb(238, 239, 185);
+	/*color: rgb(238, 239, 185);*/
 	background-color: rgba(0,0,0,0.87);
 	padding: 2px;
 	border: transparent;
